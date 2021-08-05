@@ -20,7 +20,7 @@ define('LARAVEL_START', microtime(true));
 | loading any of our classes later on. It feels great to relax.
 |
 */
-
+// オートローダの読み込み
 require __DIR__.'/../vendor/autoload.php';
 
 /*
@@ -35,6 +35,7 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
+// フレームワークの起動
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 /*
@@ -48,13 +49,13 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
-
+// アプリケーションの実行
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
-
+// httpレスポンスの送信
 $response->send();
-
+// 終了処理
 $kernel->terminate($request, $response);
