@@ -11,7 +11,16 @@
 |
 */
 
+// バインド前は57　→ バインド後58
+// 下にmyNameが追加
 Route::get('/', function () {
+    dd(app());
+    app()->bind('myName',function(){
+        return 'kenjin';
+    });
+    // dd(app());
+    $name = app()->make('myName');
+    dd($name);
     return view('welcome');
 });
 
