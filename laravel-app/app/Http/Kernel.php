@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AfterMiddleware;
 use App\Http\Middleware\HeaderDumper;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -15,7 +16,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \App\Http\Middleware\HeaderDumper::class,
+        // 完全な名前空間::class,
         \App\Http\Middleware\TrustProxies::class,
         \App\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
@@ -29,6 +30,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
+        //'グループミドルウェア名' => [
+        //    完全な名前空間::class, 
+        //    ,,,,
+        //],
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -53,6 +58,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        //'ミドルウェア名' => 完全な名前空間::class,
+        'before.middleware' => App\Http\Middleware\BeforeMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
