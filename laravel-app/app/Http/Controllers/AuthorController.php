@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Author;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Symfony\Component\Console\Input\Input;
+use App\Book;
+use App\Bookdetail;
 class AuthorController extends Controller
 {
     public function index()
@@ -38,9 +40,9 @@ class AuthorController extends Controller
         // Author::destroy([1,3,5]);
         // //以下でも動作します
         // Author::destroy(1,3,5);
-        
+
         // dd($author[0]->id);
-        // return view('author.index')->with(['author'=>$author]);
+
 
 
         // try{
@@ -50,7 +52,46 @@ class AuthorController extends Controller
         //     // エラーの時の処理
         //     echo $e->getMessage();
         // }
-        //authors
-        $authors = Author::where('id',1)->orWhere('id',2)->get();
+        //authorsテーブルでidが1または2のレコードを取得
+        // $authors = Author::where('id', 1)->orWhere('id', 2)->get();
+        // $authors = Author::where('id', '>=', 5)
+        //authorsテーブルでidが5以上でid順に取得
+        // ->orderBy('id')
+        // ->get();
+        // $author = Author::find(1);
+        // $author_json = $author->toJson();
+        // echo $author_json;
+
+        // $author = Author::where('name', '=', '著者A')->first();
+        // if (empty($author)) {
+        //     $author = Author::create(['name' => '著者A', 'kana' => 'チョシャA']);
+        // }
+
+        //firstOrCreateはそのまま作成
+        // $author = Author::firstOrCreate(['name'=>'著者A','kana'=>'チョシャ']);
+        
+        //firstOrNewメソッドはsaveメソッドと合わせて利用
+        // $author = Author::firstOrNew(['name'=>'著者A']);
+        // $author->save();
+        // echo json_encode($author_json,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+        // return view('author.index')->with(['authors' => $authors]);
+
+        // Author::destroy(1);
+        // $authors = Author::all();
+        // 削除済みのレコードも含めて取得
+        // $authors = Author::withTrashed()->get();
+        // 削除済みのレコードのみ取得
+        // $authors = Author::onlyTrashed()->get();
+
+        // $request = ['name'=>'ハンカク著者名','kana'=>'ﾊﾝｶｸﾁｮｼｬ'];
+        // $author = Author::create($request);
+        // $author = Author::all()->last()->kana;
+        // dd($author);
+        // return view('author.index')->with(['authors' => $authors]);
+
+        // $book = Book::find(1);
+        $book = Bookdetail::find(1);
+        dd($book->book->name);
+        echo $book->book->name->toSql();
     }
 }
