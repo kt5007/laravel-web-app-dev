@@ -91,7 +91,7 @@ class AuthorController extends Controller
 
         // $book = Book::find(1);
         $book = Bookdetail::find(1);
-        dd($book->book->name);
-        echo $book->book->name->toSql();
+        dd($book->book);
+        echo $book->book->id;
     }
 }

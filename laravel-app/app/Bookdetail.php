@@ -20,6 +20,6 @@ class Bookdetail extends Model
 
     public function book()
     {
-        return $this->belongsTo(\App\Book::class);
+        return $this->belongsTo(Book::class);
     }
 }
