@@ -12,9 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //呼び出すSeederクラスを記述
-        $this->call(AuthorsTableSeeder::class);
-        $this->call(PublishersTableSeeder::class);
-        $this->call(BookdetailsTableSeeder::class);
-        $this->call(BooksTableSeeder::class);
+        // $this->call(AuthorsTableSeeder::class);
+        // $this->call(PublishersTableSeeder::class);
+        // $this->call(BookdetailsTableSeeder::class);
+        // $this->call(BooksTableSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

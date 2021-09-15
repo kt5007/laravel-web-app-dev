@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Author;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\DB;
 use App\Book;
 use App\Bookdetail;
+
 class AuthorController extends Controller
 {
     public function index()
@@ -89,9 +91,23 @@ class AuthorController extends Controller
         // dd($author);
         // return view('author.index')->with(['authors' => $authors]);
 
+        // $sql = Author::where('name','=','著者A')->toSql();
+        // echo $sql;
+
+        //SQL保存を有効化する
+        DB::enableQueryLog();
+        //データの操作実行
+        $authors = Author::find([1,3,5]);
+        //クエリの取得
+        $queries = DB::getQueryLog();
+        //SQL保存を無効化
+        DB::disableQueryLog();
+        //取得したクエリの表示
+        dd($queries);
+        
         // $book = Book::find(1);
-        $book = Bookdetail::find(1);
-        dd($book->book);
-        echo $book->book->id;
+        // $book = Bookdetail::find(1);
+        // dd($book);
+        // echo $book->book->id;
     }
 }

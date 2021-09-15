@@ -31,3 +31,5 @@ Route::post('/auth/logout', 'Auth\LoginController@logout');
 
 Route::get('/test_middleware/index', 'testMiddlewareController@index');
 Route::post('/test_middleware/post', 'testMiddlewareController@post');
+
+Route::post('/action/favorite','FavoriteActionController@switchFavorite');
