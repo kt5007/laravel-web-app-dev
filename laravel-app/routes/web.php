@@ -12,11 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', function () {
-    return view('home');
+    $view = view('welcome');
+    Event::dispatch(new \App\Events\PublishProcessor(1));
+    return $view;
 });
 
 Route::get('/author', 'AuthorController@index');

@@ -43,3 +43,8 @@ services:
     ports:
       - "8003:1025"
       - "8100:8025"
+
+  redis:
+    image: redis:4.0
+    ports:
+      - "6379:6379"

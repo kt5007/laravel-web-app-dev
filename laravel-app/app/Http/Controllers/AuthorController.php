@@ -103,7 +103,7 @@ class AuthorController extends Controller
         //SQL保存を無効化
         DB::disableQueryLog();
         //取得したクエリの表示
-        dd($queries);
+        // dd($queries);
         
         // $book = Book::find(1);
         // $book = Bookdetail::find(1);

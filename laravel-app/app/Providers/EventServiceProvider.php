@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\PublishProcessor;
+use App\Listeners\MessageQueueSubscriber;
+use App\Listeners\MessageSubscriber;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -15,13 +18,11 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
+    //デフォルトで用意されているlistenプロパティで指定する場合
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
-        // 会員登録イベントのリスナーを発行（追加）
-        'Illuminate\Auth\Events\Registered' => [
-            'App\Listeners\RegisteredListener',
+        PublishProcessor::class => [
+            MessageSubscriber::class,
+            MessageQueueSubscriber::class,
         ],
     ];
 
@@ -33,7 +34,14 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
-        //
+        //Facadeを利用した例
+        // Event::listen(
+        //     PublishProcessor::class, MessageSubscriber::class
+        // );
+        //フレームワークのDIコンテナにアクセスする場合
+        // $this->app['events']->listen(
+        //     PublishProcessor::class,
+        //     MessageSubscriber::class
+        // );
     }
 }
