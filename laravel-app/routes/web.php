@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/author', 'AuthorController@index');
+Route::get('/pdf', 'PdfGeneratorController@index');
 
 Route::get('/auth/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('/auth/register', 'Auth\RegisterController@register');

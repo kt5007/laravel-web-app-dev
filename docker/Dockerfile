@@ -15,7 +15,9 @@ RUN apt-get install -y \
         tree \
         vim \
         wget \
-        subversion
+        subversion \
+        libfontconfig1 libxrender1 \
+        supervisor
 
 RUN apt-get install -y \
         libzip-dev \

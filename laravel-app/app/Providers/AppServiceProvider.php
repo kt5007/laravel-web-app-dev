@@ -3,26 +3,14 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Knp\Snappy\Pdf;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
+        $this->app->bind(Pdf::class, function(){
+            return new Pdf('/var/www/app/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64');
+        });
     }
 }
